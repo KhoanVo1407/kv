@@ -50,13 +50,8 @@ def print_user(index, data):
     print(f"Job Title: {data.get(b'info:job_title', b'').decode('utf-8')}\n")
 #Update
 def update_user(index, **kwargs):
-    row_key = str(index)
-    if not table.row(row_key):
-        print(f"No user found with Index {index}")
-        return
-
     user_data = {f"info:{k}": v for k, v in kwargs.items()}
-    table.put(row_key, user_data)
+    table.put(str(index), user_data)
     print(f"User with Index {index} updated successfully.")
 
 #Delete
